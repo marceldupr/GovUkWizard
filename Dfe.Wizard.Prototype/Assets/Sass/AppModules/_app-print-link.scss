@@ -1,0 +1,6 @@
+.print-link {
+  @include govuk-font(16);
+
+  display: inline-block;
+  margin-left: govuk-spacing(4);
+}

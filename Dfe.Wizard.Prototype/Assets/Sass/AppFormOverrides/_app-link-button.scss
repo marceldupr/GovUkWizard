@@ -1,0 +1,14 @@
+.app-link-button {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  color: $govuk-link-colour;
+  text-decoration: underline;
+
+  @include govuk-link-common;
+  @include govuk-link-style-default;
+  @include govuk-font(19);
+}

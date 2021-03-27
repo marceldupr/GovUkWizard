@@ -1,0 +1,20 @@
+@model Dfe.Wizard.Prototype.Models.Questions.Question
+@{
+    var formGroupClasses = "govuk-form-group";
+    var errorMessage = string.Empty;
+    if (ViewData.ContainsKey("hasErrors") && ViewData["hasErrors"] != null)
+    {
+        formGroupClasses = string.Concat(formGroupClasses, " govuk-form-group--error");
+    }
+}
+<div class="@formGroupClasses">
+    <label class="govuk-label govuk-!-width-two-thirds" for="string">
+        @Model.Answer.Label
+    </label>
+    @if (ViewData.ContainsKey("errorMessage") && ViewData["errorMessage"] != null)
+    {
+        <span class="govuk-error-message">@ViewData["errorMessage"]</span>
+    }
+    <input type="text" class="govuk-input govuk-!-width-two-thirds" id="string" name="string" />
+    @*<textarea class="govuk-textarea" id="string" name="string" rows="5" aria-describedby="more-detail-hint"></textarea>*@
+</div>

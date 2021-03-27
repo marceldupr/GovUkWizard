@@ -1,0 +1,31 @@
+@model Dfe.Wizard.Prototype.Models.Questions.Question
+@{
+    var formGroupClasses = "govuk-form-group govuk-radios--inline";
+    var errorMessage = string.Empty;
+    if (ViewData.ContainsKey("hasErrors") && ViewData["hasErrors"] != null)
+    {
+        formGroupClasses = string.Concat(formGroupClasses, " govuk-form-group--error");
+    }
+}
+<div class="govuk-form-group">
+    <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend">
+            @Model.Answer.Label
+        </legend>
+        <div class="@formGroupClasses">
+            @if (ViewData.ContainsKey("errorMessage") && ViewData["errorMessage"] != null)
+            {
+                <span class="govuk-error-message">@ViewData["errorMessage"]</span>
+            }
+            @foreach (var opt in Model.Answer.AnswerPotentials)
+            {
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="@opt.Value" name="boolean" type="radio" value="@opt.Value">
+                    <label class="govuk-label govuk-radios__label" for="@opt.Value">
+                        @opt.Description
+                    </label>
+                </div>
+            }
+        </div>
+    </fieldset>
+</div>

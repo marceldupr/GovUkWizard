@@ -1,0 +1,13 @@
+root = true
+
+# All files
+[*]
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = true
+insert_final_newline = true
+charset = utf-8
+# end_of_line = Line endings are normalised by Git (* text=auto in .gitattributes file)
+
+[*.{js,scss,vue,json}]
+indent_size = 2

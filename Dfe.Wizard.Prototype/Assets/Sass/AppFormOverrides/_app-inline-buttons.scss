@@ -1,0 +1,6 @@
+.app-button--inline {
+  @include govuk-media-query($until: tablet) {
+    display: block;
+    margin-top: govuk-spacing(2);
+  }
+}

@@ -1,0 +1,5 @@
+.govuk-form-group--error {
+  .govuk-date-input__input {
+    border-color: $govuk-error-colour;
+  }
+}

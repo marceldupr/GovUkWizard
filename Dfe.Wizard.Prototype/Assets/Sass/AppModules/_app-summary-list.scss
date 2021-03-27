@@ -1,0 +1,95 @@
+.app-summary-list {
+  @include govuk-font(19);
+
+  overflow: hidden;
+
+  .govuk-summary-list__key,
+  .govuk-summary-list__value {
+    border-bottom: none;
+    width: auto;
+    float: left;
+    font-weight: normal;
+
+    @include govuk-media-query($until: tablet){
+      float: none;
+    }
+  }
+
+  &.app-summary-list__school-scores {
+    .govuk-summary-list__key {
+      width: 45%;
+
+      @include govuk-media-query($until:tablet) {
+        width: auto;
+      }
+    }
+
+    @include govuk-media-query($until: tablet) {
+      .govuk-summary-list__value {
+        font-weight: bold;
+      }
+    }
+  }
+
+  &.app-summary-list--mobile-inline {
+    .govuk-summary-list__key,
+    .govuk-summary-list__value {
+      padding-top: govuk-spacing(1);
+    }
+
+    .govuk-summary-list__key {
+      float: left;
+      width: 20%;
+    }
+
+    .govuk-summary-list__value {
+      float: left;
+      padding-left: govuk-spacing(1);
+    }
+
+    @include govuk-media-query($until: tablet) {
+      .govuk-summary-list__row {
+        clear: both;
+        border: 0;
+      }
+
+      .govuk-summary-list__key {
+        float: left;
+        width: 40%;
+        padding-right: govuk-spacing(1);
+      }
+
+      .govuk-summary-list__value {
+        float: none;
+      }
+    }
+  }
+
+  &.app-summary-list--70 {
+    @include govuk-media-query($from: tablet) {
+      width: 70%;
+      .govuk-summary-list__key {
+        width: 40%;
+      }
+    }
+  }
+
+  &.app-summary-list--pupil-details {
+    .govuk-summary-list__key {
+      float: left;
+      width: 40%;
+    }
+  }
+}
+
+.govuk-accordion__section-content {
+  .app-summary-list {
+    .govuk-summary-list__row {
+      @include govuk-media-query($until: tablet) {
+        &:last-child {
+          border-bottom: 0;
+        }
+      }
+    }
+  }
+}

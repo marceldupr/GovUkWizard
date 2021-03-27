@@ -1,0 +1,45 @@
+@media print {
+
+  a[href^="/"]::after {
+    content: '';
+  }
+  .app-signout-link {
+    display: none;
+  }
+
+  .govuk-back-link {
+    display: none;
+  }
+
+  .app-ribbon-nav {
+    display: none;
+  }
+
+  .print-link {
+    display: none;
+  }
+
+  .govuk-details__text {
+    display: block !important;
+  }
+
+  .govuk-accordion__controls {
+    display: none;
+  }
+
+  .govuk-accordion__section-content {
+    display: block !important;
+  }
+
+  .govuk-accordion__icon {
+    display: none;
+  }
+
+  .govuk-header__navigation {
+    display: none !important;
+  }
+
+  .govuk-header__container {
+    border-bottom: 0;
+  }
+}

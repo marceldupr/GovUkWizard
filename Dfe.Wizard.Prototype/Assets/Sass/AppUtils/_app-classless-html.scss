@@ -1,0 +1,22 @@
+.app-unclassed-html {
+  ul {
+    @extend %govuk-list;
+
+    padding-left: govuk-spacing(4);
+    list-style-type: disc;
+  }
+
+  li {
+    margin-bottom: 0;
+
+    @include govuk-media-query($from: tablet) {
+      margin-bottom: govuk-spacing(1);
+    }
+  }
+
+  p.govuk-\!-font-weight-bold {
+    margin-bottom: govuk-spacing(2);
+  }
+
+  @extend %govuk-body-m;
+}

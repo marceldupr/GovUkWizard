@@ -1,0 +1,47 @@
+.app-pupil-list-table {
+  .govuk-table__header,
+  .govuk-table__cell {
+    font-size: 16px;
+  }
+
+  @include govuk-media-query($until: 900px) {
+    .govuk-table__head {
+      display: none;
+    }
+
+    .govuk-table__body {
+      .govuk-table__cell {
+        display: block;
+        border: 0;
+        padding: 10px 0;
+
+        &:last-child {
+          border-bottom: 1px solid $govuk-border-colour;
+          padding-bottom: 40px;
+        }
+
+        &:first-child {
+          padding-top: 30px;
+        }
+
+        &[data-label] {
+          &::before {
+            content: attr(data-label);
+            float: left;
+            padding-right: 15px;
+            padding-bottom: 10px;
+            min-width: 75px;
+            width: 49%;
+          }
+        }
+      }
+    }
+  }
+
+  @include govuk-media-query($from: 900px, $until: 1200px) {
+    .govuk-table__header,
+    .govuk-table__cell {
+      font-size: 14px;
+    }
+  }
+}

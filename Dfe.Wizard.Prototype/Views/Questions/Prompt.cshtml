@@ -1,0 +1,53 @@
+@using Dfe.Wizard.Prototype.Models.Questions
+@using Dfe.Wizard.Prototype.Models.ViewModels
+@model Dfe.Wizard.Prototype.Models.ViewModels.Questions.QuestionViewModel
+@{
+    var currentQuestion = Model.CurrentQuestion;
+    ViewData["hasErrors"] = Model.ValidationErrors?.Any();
+
+    var pageHeading = @Model.GetTitle();
+    if (ViewBag.HasAdded != null && ViewBag.HasAdded == true)
+    {
+        var uploaded = ViewBag.Upload as FilesViewModel;
+        var fileCount = uploaded.Files.Count();
+
+        pageHeading = fileCount > 1 ?
+            string.Concat("You have uploaded ", uploaded.Files.Count(), " files") :
+            "You have uploaded 1 file";
+    }
+}
+
+@section BackLink
+{
+    <a class="govuk-back-link" onclick="history.go(-1); return false;" href="#">Back</a>
+}
+
+<div asp-validation-summary="All"></div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-l govuk-!-margin-bottom-3">@pageHeading</h1>
+    </div>
+</div>
+
+<form method="post" novalidate="novalidate" enctype="multipart/form-data">
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            <div>
+                <input name="fieldType" id="fieldType" value="@currentQuestion.QuestionType" type="hidden" />
+                <input name="questionId" id="questionId" value="@currentQuestion.Id" type="hidden" />
+                <input name="currentIndex" id="currentIndex" value="@Model.CurrentQuestionIndex" type="hidden" />
+                <partial name="./Partial/_Control_@currentQuestion.QuestionType.ToString()" model="@currentQuestion" view-data='ViewData'/>
+                @if (currentQuestion.QuestionType != QuestionType.Evidence)
+                {
+                    // continue button for Evidence is in the partial so it can be toggled with the add more files button
+                    <div>
+                        <button name="Continue" value="true" class="govuk-button govuk-!-margin-right-1" data-module="govuk-button">
+                            Continue
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</form>

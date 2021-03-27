@@ -1,0 +1,50 @@
+@model Dfe.Wizard.Prototype.Models.Questions.Question
+@{
+    var formGroupClasses = "govuk-form-group";
+    var errorMessage = string.Empty;
+    if (ViewData.ContainsKey("hasErrors") && ViewData["hasErrors"] != null)
+    {
+        formGroupClasses = string.Concat(formGroupClasses, " govuk-form-group--error");
+    }
+}
+<div class="@formGroupClasses">
+    <fieldset class="govuk-fieldset" role="group" aria-describedby="date-prompt-hint" id="@Model.Id">
+        <legend class="govuk-fieldset__legend">
+            @Model.Answer.Label
+        </legend>
+        <div class="govuk-hint" id="date-prompt-hint">
+            For example, 12 11 2007
+        </div>
+        @if (ViewData.ContainsKey("errorMessage") && ViewData["errorMessage"] != null)
+        {
+            <span class="govuk-error-message">@ViewData["errorMessage"]</span>
+        }
+        <div class="govuk-date-input">
+            <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="date-day">
+                        Day
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-day" name="date-day" type="text" pattern="[0-9]*" inputmode="numeric">
+                </div>
+            </div>
+            <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="date-month">
+                        Month
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-month" name="date-month" type="text" pattern="[0-9]*" inputmode="numeric">
+                </div>
+            </div>
+            <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="date-year">
+                        Year
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-year" name="date-year" type="text" pattern="[0-9]*" inputmode="numeric">
+                </div>
+            </div>
+        </div>
+
+    </fieldset>
+</div>

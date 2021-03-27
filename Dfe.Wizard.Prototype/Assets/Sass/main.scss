@@ -1,0 +1,43 @@
+// use global styles means that we don't need to add class names to links and paragraphs
+// for them to appear correctly
+$govuk-global-styles: true;
+
+@import "Helpers/font-url";
+// Design system components
+// n.b. this isn't everything available in the govuk frontend - just what we need
+@import "node_modules/govuk-frontend/govuk/base";
+@import "node_modules/govuk-frontend/govuk/core/all";
+@import "node_modules/govuk-frontend/govuk/objects/all";
+@import "node_modules/govuk-frontend/govuk/components/footer/index";
+@import "node_modules/govuk-frontend/govuk/components/header/index";
+@import "node_modules/govuk-frontend/govuk/components/skip-link/index";
+@import "node_modules/govuk-frontend/govuk/components/checkboxes/index";
+@import "node_modules/govuk-frontend/govuk/components/radios/index";
+@import "node_modules/govuk-frontend/govuk/components/button/index";
+@import "node_modules/govuk-frontend/govuk/components/label/index";
+@import "node_modules/govuk-frontend/govuk/components/select/index";
+@import "node_modules/govuk-frontend/govuk/components/file-upload/index";
+@import "node_modules/govuk-frontend/govuk/components/fieldset/index";
+@import "node_modules/govuk-frontend/govuk/components/phase-banner/index";
+@import "node_modules/govuk-frontend/govuk/components/input";
+@import "node_modules/govuk-frontend/govuk/components/date-input/index";
+@import "node_modules/govuk-frontend/govuk/components/textarea/index";
+@import "node_modules/govuk-frontend/govuk/components/character-count/index";
+@import "node_modules/govuk-frontend/govuk/components/hint/index";
+@import "node_modules/govuk-frontend/govuk/components/error-summary/index";
+@import "node_modules/govuk-frontend/govuk/components/error-message/index";
+@import "node_modules/govuk-frontend/govuk/components/summary-list/index";
+@import "node_modules/govuk-frontend/govuk/components/back-link/index";
+@import "node_modules/govuk-frontend/govuk/components/details/index";
+@import "node_modules/govuk-frontend/govuk/components/table/index";
+@import "node_modules/govuk-frontend/govuk/components/panel/index";
+@import "node_modules/govuk-frontend/govuk/components/accordion/index";
+@import "node_modules/govuk-frontend/govuk/utilities/all";
+@import "node_modules/govuk-frontend/govuk/overrides/all";
+// App specific styles
+@import "AppUtils/all";
+@import "AppGrid/all";
+@import "AppFormOverrides/all";
+@import "AppModules/all";
+@import "AppBanners/all";
+@import "AppGovukModuleExtensions/all";

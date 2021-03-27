@@ -1,0 +1,121 @@
+@include mq-add-breakpoint(wide, 1300px);
+
+.no-scroll {
+  overflow: hidden;
+}
+
+.app-modal__overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: govuk-colour('black');
+  opacity: 0.6;
+  filter: alpha(opacity=0.6);
+  z-index: 10100;
+}
+
+.app-modal {
+  position: fixed;
+  left: 23%;
+  right: auto;
+  top: 25%;
+  width: 50%;
+  margin: 0 auto;
+  border: 1px solid govuk-colour('black');
+  background-color: govuk-colour('white');
+  z-index: 10105;
+  padding: 2em 0;
+  max-height: 50%;
+  overflow: hidden;
+
+  @include govuk-typography-common;
+
+  p {
+    font-size: 16px;
+  }
+
+  @include govuk-media-query($until: tablet) {
+    left: 0;
+    right: 0;
+    top: 5%;
+    width: 90%;
+    max-height: 90%;
+    h1 {
+      margin-top: 0.5em;
+    }
+  }
+}
+
+.app-modal__title {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.app-modal__close-container {
+  display: block;
+  text-align: right;
+  padding: 0 2em 0.8em 2em;
+}
+
+.app-modal__content-wrapper {
+  overflow-y: auto;
+  max-height: 44vh;
+  min-height: 10vh;
+  padding: 0;
+
+  @include govuk-media-query($until: tablet) {
+    max-height: 73vh;
+  }
+}
+
+@media only screen and (orientation: portrait) and (max-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+  .app-modal__content-wrapper {
+    max-height: 73vh;
+  }
+
+  .app-modal {
+    left: 0;
+    right: 0;
+    top: 5%;
+    width: 90%;
+    max-height: 90%;
+  }
+}
+
+@media only screen and (orientation: landscape) and (max-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+  .app-modal__content-wrapper {
+    max-height: 60vh;
+  }
+
+  .app-modal {
+    left: 0;
+    right: 0;
+    top: 5%;
+    width: 90%;
+    max-height: 90%;
+  }
+}
+
+.app-modal__content {
+  padding: 0 2em;
+}
+
+.app-modal__button-row {
+  padding-top: 2em;
+
+  .govuk-button {
+    margin-right: govuk-spacing(4);
+    margin-bottom: govuk-spacing(2);
+    min-width: 90px;
+  }
+}
+
+.app-modal__yes-no {
+  padding: 2em 0 1em;
+
+  @include govuk-media-query($from: tablet) {
+    max-width: 50%;
+  }
+}

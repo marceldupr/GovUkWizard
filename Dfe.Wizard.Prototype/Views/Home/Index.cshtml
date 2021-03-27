@@ -1,0 +1,38 @@
+@model Dfe.Wizard.Prototype.Models.ViewModels.HomeViewModel
+@{
+    ViewBag.Title = "Home";
+}
+@section BackLink
+{
+    <text>&nbsp;</text>
+}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-l govuk-!-margin-bottom-3">Dfe Census 2021</h1>
+    </div>
+</div>
+
+<form method="post">
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            <div>
+                @foreach (var questionnaire in Model.Questionnaires)
+                {
+                    <div class="govuk-radios__item">
+                        <input type="radio" asp-for="SelectedQuestionnaire" id="SelectedQuestionnaire-@questionnaire.Id" value="@questionnaire.Id" class="govuk-radios__input"/>
+                        <label class="govuk-label govuk-radios__label" for="SelectedQuestionnaire-@questionnaire.Id">
+                            @questionnaire.Name
+                        </label>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <br/>
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <input type="submit" class="govuk-button" data-module="govuk-button" value="Continue" />
+    </div>
+</div>
+</form>

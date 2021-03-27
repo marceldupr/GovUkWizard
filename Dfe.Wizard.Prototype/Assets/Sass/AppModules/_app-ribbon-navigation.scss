@@ -1,0 +1,119 @@
+.app-ribbon-nav {
+  background-color: govuk-colour('light-grey');
+  margin-bottom: govuk-spacing(4);
+}
+
+.app-ribbon-nav__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+
+  //@include govuk-media-query($until: tablet) {
+  //  display: block;
+  //}
+}
+
+.app-ribbon-nav__list-item {
+  display: block;
+  margin: 0;
+  padding: 0;
+
+  @include govuk-media-query($until: tablet) {
+    display: inline-block;
+  }
+}
+
+.app-ribbon-nav__link {
+  display: block;
+  padding: govuk-spacing(2) govuk-spacing(3) govuk-spacing(2) govuk-spacing(3);
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 4px solid govuk-colour('light-grey');
+  color: $govuk-link-colour;
+  height: 36px;
+
+  @include govuk-media-query($until: tablet) {
+    font-size: 14px;
+    padding: govuk-spacing(2) 4px;
+    height: 28px;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  &:visited {
+    color: $govuk-link-colour;
+  }
+
+  &:hover {
+    color: $govuk-link-hover-colour;
+    border-color: $govuk-link-hover-colour;
+  }
+}
+
+.app-ribbon-nav__list-item--active {
+  .app-ribbon-nav__link {
+    border-color: $govuk-link-colour;
+    color: $govuk-link-colour;
+  }
+}
+
+.app-ribbon-nav__list-item--tall {
+  .app-ribbon-nav__link {
+    padding-bottom: govuk-spacing(2);
+  }
+}
+
+.app-ribbon-nav__overflow-item {
+  float: right;
+  right: 0;
+  display: block;
+  clear: both;
+  position: absolute;
+  z-index: 10;
+  background-color: govuk-colour('light-grey');
+
+  .app-ribbon-nav__link {
+    min-width: 155px;
+  }
+}
+
+.app-ribbon-nav__list-item--more {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+
+  @include govuk-media-query($until: tablet) {
+    .app-ribbon-nav__link {
+      padding-right: 15px;
+    }
+  }
+
+  &::after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    top: 18px;
+    right: 2px;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid $govuk-brand-colour;
+
+    @include govuk-media-query($from: tablet, $until: desktop) {
+      top: 20px;
+    }
+  }
+
+  &.open-extras {
+    &::after {
+      border-top: none;
+      border-bottom: 4px solid $govuk-brand-colour;
+    }
+  }
+}

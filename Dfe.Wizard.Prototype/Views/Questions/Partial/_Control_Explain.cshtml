@@ -1,0 +1,26 @@
+@model Dfe.Wizard.Prototype.Models.Questions.Question
+@{
+    var formGroupClasses = "govuk-form-group";
+    var errorMessage = string.Empty;
+    if (ViewData.ContainsKey("hasErrors") && ViewData["hasErrors"] != null)
+    {
+        formGroupClasses = string.Concat(formGroupClasses, " govuk-form-group--error");
+    }
+}
+<div class="govuk-character-count" data-module="govuk-character-count" data-maxlength="500">
+    <div class="@formGroupClasses">
+        <p>@Model.Answer.Label</p>
+
+        @if (ViewData.ContainsKey("errorMessage") && ViewData["errorMessage"] != null)
+        {
+            <span class="govuk-error-message">@ViewData["errorMessage"]</span>
+        }
+
+        <label class="govuk-label" for="@Model.Id">Please explain your request</label>
+
+        <textarea class="govuk-textarea govuk-js-character-count" id="@Model.Id" name="explain" rows="5" aria-describedby="string-info"></textarea>
+    </div>
+    <div id="@Model.Id-info" class="govuk-hint govuk-character-count__message" aria-live="polite">
+        You can enter up to 500 characters
+      </div>
+</div>

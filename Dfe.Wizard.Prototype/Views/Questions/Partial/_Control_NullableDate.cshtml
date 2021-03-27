@@ -1,0 +1,87 @@
+@model Dfe.Wizard.Prototype.Models.Questions.Question
+@{
+    // No radio is selected on load, so we validate for a non-selection error and style that to align with GOVUK radios default error styling...
+    // BUT if the user makes the selection and then decides febuary has 30 days or something silly
+    // we change the error format to change the expander to have the error colour border to prevent a double border
+
+
+    var validationContainerClasses = "govuk-radios__conditional govuk-radios__conditional--hidden";
+    var noneSelectedContainerClasses = "govuk-form-group";
+    var checkedString = string.Empty;
+    if (!ViewData.ModelState.IsValid)
+    {
+        if (!ViewData.ContainsKey("errorType"))
+        {
+            checkedString = "checked=\"checked\"";
+            validationContainerClasses = string.Concat(validationContainerClasses, " govuk-form-group--error");
+        }
+        else
+        {
+            noneSelectedContainerClasses = string.Concat(noneSelectedContainerClasses, " govuk-form-group--error");
+        }
+    }
+
+}
+<div class="@noneSelectedContainerClasses">
+    <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-!-font-weight-bold">
+            Select one
+        </legend>
+
+        @if (ViewData.ContainsKey("errorMessage1") && ViewData["errorMessage1"] != null)
+        {
+            <span class="govuk-error-message">@ViewData["errorMessage1"]</span>
+        }
+        <div class="govuk-radios  govuk-radios--conditional" data-module="govuk-radios" id="@Model.Id">
+            <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="answer-0" name="@Model.Id" type="radio" value="1" aria-controls="date-known-expander" @checkedString>
+                <label class="govuk-label govuk-radios__label" for="answer-0">
+                    @Model.Answer.AnswerPotentials.First().Description
+                </label>
+            </div>
+            <div class="@validationContainerClasses" id="date-known-expander">
+                <div class="govuk-hint">
+                    @Model.Answer.ConditionalQuestion.Answer.Label
+                </div>
+                @if (ViewData.ContainsKey("errorMessage") && ViewData["errorMessage"] != null)
+                {
+                    <span class="govuk-error-message">@ViewData["errorMessage"]</span>
+                }
+                <div class="govuk-date-input">
+                    <div class="govuk-date-input__item">
+                        <div class="govuk-form-group">
+                            <label class="govuk-label govuk-date-input__label" for="date-day">
+                                Day
+                            </label>
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-day" name="date-day" type="text" pattern="[0-9]*" inputmode="numeric">
+                        </div>
+                    </div>
+                    <div class="govuk-date-input__item">
+                        <div class="govuk-form-group">
+                            <label class="govuk-label govuk-date-input__label" for="date-month">
+                                Month
+                            </label>
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-month" name="date-month" type="text" pattern="[0-9]*" inputmode="numeric">
+                        </div>
+                    </div>
+                    <div class="govuk-date-input__item">
+                        <div class="govuk-form-group">
+                            <label class="govuk-label govuk-date-input__label" for="date-year">
+                                Year
+                            </label>
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-year" name="date-year" type="text" pattern="[0-9]*" inputmode="numeric">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="answer-1" name="@Model.Id" type="radio" value="2">
+                <label class="govuk-label govuk-radios__label" for="answer-1">
+                    @Model.Answer.AnswerPotentials.Last().Description
+                </label>
+            </div>
+        </div>
+
+    </fieldset>
+</div>

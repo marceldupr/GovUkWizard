@@ -1,0 +1,11 @@
+.govuk-radios--conditional .govuk-error-message {
+  display: none;
+}
+
+.govuk-radios__conditional.govuk-form-group--error {
+  border-color: $govuk-error-colour;
+
+  .govuk-error-message {
+    display: block;
+  }
+}

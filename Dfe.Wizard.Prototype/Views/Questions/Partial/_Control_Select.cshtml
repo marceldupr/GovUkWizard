@@ -1,0 +1,26 @@
+@using Dfe.Wizard.Prototype.Models.Common
+@model Dfe.Wizard.Prototype.Models.Questions.Question
+@{
+    var formGroupClasses = "govuk-form-group";
+    var errorMessage = string.Empty;
+    if (ViewData.ContainsKey("hasErrors") && ViewData["hasErrors"] != null) {
+        formGroupClasses = string.Concat(formGroupClasses, " govuk-form-group--error");
+    }
+}
+
+<div class="@formGroupClasses">
+    <label class="govuk-label" for="@Model.Id">
+        @Model.Answer.Label
+    </label>
+    @if (ViewData.ContainsKey("errorMessage") && ViewData["errorMessage"] != null)
+    {
+        <span class="govuk-error-message">@ViewData["errorMessage"]</span>
+    }
+    <select class="govuk-select govuk-input--width-20" id="@Model.Id" name="select">
+        <option value="">Select one</option>
+        @foreach (var potential in Model.Answer.AnswerPotentials)
+        {
+        <option value="@potential.Value">@potential.Description.Encode().Trim()</option>}
+    </select>
+</div>
+

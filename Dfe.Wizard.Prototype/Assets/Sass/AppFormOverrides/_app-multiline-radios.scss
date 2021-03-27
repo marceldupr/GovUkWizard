@@ -1,0 +1,15 @@
+.app-radios-multiline__item {
+  .govuk-radios__label {
+    padding-top: 0;
+    margin-bottom: govuk-spacing(4);
+  }
+}
+
+.app-radios-multiline__label-row {
+  display: block;
+  font-size: 16px;
+  
+  @include govuk-media-query($until: tablet){
+    font-size: 14px;
+  }
+}

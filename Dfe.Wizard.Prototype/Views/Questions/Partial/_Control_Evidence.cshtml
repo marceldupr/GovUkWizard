@@ -1,0 +1,93 @@
+@using Dfe.Wizard.Prototype.Models.ViewModels
+@model Dfe.Wizard.Prototype.Models.Questions.Question
+@{
+    var formGroupClasses = "govuk-form-group";
+    var errorMessage = string.Empty;
+    if (ViewData.ContainsKey("errorMessage") && ViewData["errorMessage"] != null)
+    {
+        formGroupClasses = string.Concat(formGroupClasses, " govuk-form-group--error");
+    }
+    var uploaded = ViewBag.Upload as FilesViewModel;
+}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h2 class="govuk-heading-s">Files you have uploaded</h2>
+        <details class="govuk-details govuk-!-font-size-16" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">View file guidance</span>
+            </summary>
+            <div class="govuk-details__text">
+                <div class="app-unclassed-html">
+                    <p>
+                        We will need evidence of no more than 12 pages with a maximum of 12 files allowable to
+                        upload. Each file size should not exceed 3MB and be one of the following acceptable file
+                        format: .JPG, .DOC, .DOCX, PDF, .HTML
+                    </p>
+                    @Html.Raw(Model.HelpTextHtml)
+                </div>
+            </div>
+        </details>
+
+        <dl class="govuk-summary-list app-files-list">
+            @if (uploaded == null)
+            {
+                <div class="govuk-summary-list__row" id="row-zero">
+                    <dt class="govuk-summary-list__key">
+                        0 file uploaded
+                    </dt>
+                </div>
+            }
+            else
+            {
+                var count = 1;
+                @foreach (var file in uploaded.Files)
+                {
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            @count.ToString(). @file.FileName
+                        </dt>
+                        <dd class="govuk-summary-list__actions">
+                            <button class="app-link-button" name="remove" value="@file.Id">Remove</button>
+                        </dd>
+                    </div>
+                    count++;
+                }
+            }
+        </dl>
+    </div>
+</div>
+
+@if (ViewBag.HasAdded == true)
+{
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+            <div class="govuk-form-group govuk-!-margin-bottom-8">
+                <button class="app-link-button" value="true" name="skipValidation">Upload another file</button>
+            </div>
+            <div class="govuk-form-group">
+                <button name="Continue" value="true" class="govuk-button govuk-!-margin-right-1" data-module="govuk-button">
+                    Continue
+                </button>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds" id="app-upload__files-container">
+            <div class="@formGroupClasses">
+                <label class="govuk-label" for="@Model.Id">Upload a file</label>
+                @if (ViewData.ContainsKey("errorMessage") && ViewData["errorMessage"] != null)
+                {
+                    <span class="govuk-error-message">@ViewData["errorMessage"]</span>
+                }
+                <input class="govuk-file-upload" type="file" name="evidence" id="@Model.Id">
+            </div>
+        </div>
+        <div class="govuk-grid-column-two-thirds">
+            <input type="submit" class="govuk-button" data-module="govuk-button" value="Upload" />
+        </div>
+    </div>
+}

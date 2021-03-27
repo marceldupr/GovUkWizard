@@ -1,0 +1,9 @@
+.app-files-list {
+  .govuk-summary-list__key {
+    font-weight: normal;
+
+    @include govuk-media-query($from: tablet) {
+      width: 50%;
+    }
+  }
+}

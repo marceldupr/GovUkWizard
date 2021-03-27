@@ -1,0 +1,23 @@
+@model Dfe.Wizard.Prototype.Models.Questions.Question
+@{
+    var formGroupClasses = "govuk-form-group";
+    var errorMessage = string.Empty;
+    if (ViewData.ContainsKey("hasErrors") && ViewData["hasErrors"] != null)
+    {
+        formGroupClasses = string.Concat(formGroupClasses, " govuk-form-group--error");
+    }
+}
+<div class="@formGroupClasses">
+    <label class="govuk-label  govuk-!-width-two-thirds" for="number">
+        @Model.Answer.Label
+    </label>
+    @if(Model.Id == "LaestabNumberQuestion")
+    {
+        <span class="govuk-hint">For example, 1234567</span>
+    }
+    @if (ViewData.ContainsKey("errorMessage") && ViewData["errorMessage"] != null)
+    {
+        <span class="govuk-error-message">@ViewData["errorMessage"]</span>
+    }
+    <input class="govuk-input govuk-!-width-two-thirds" id="number" name="number" type="text">
+</div>
