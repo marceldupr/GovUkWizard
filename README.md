@@ -1,4 +1,4 @@
-# GovUkWizard
+# GovUk Wizard Prototype
 
 A generic 'Survey', 'Wizard' using the GovUK toolkit. This metadata driven application can easily be used to drive the UI by code and enable rapid development of surveys or data gathering 'Wizards'.
 This includes executing validation and even business rules with outcomes after the survey is completed. 
