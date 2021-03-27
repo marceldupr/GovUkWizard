@@ -27,6 +27,7 @@ namespace Dfe.Wizard.Prototype.Application.Questionnaires
             {
                 questions.Add(new PriceOfPurchaseQuestion());
                 questions.Add(new DateOfPurchaseQuestion());
+                questions.Add(new EvidenceUploadQuestion("Upload Evidence", "<p>Proof of Address</p>"));
             }
 
             return questions;
