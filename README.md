@@ -4,7 +4,7 @@ A generic 'Survey', 'Wizard' or 'Questionnaire' using the GovUK toolkit. This me
 This includes executing validation and even business rules with outcomes after the survey is completed. 
  
 ## Prerequisites
-- Visual Studio 2019
+- Visual Studio or Jetbrains Rider
 - .NET Core 3.1 SDK
 - Node
 - NPM
