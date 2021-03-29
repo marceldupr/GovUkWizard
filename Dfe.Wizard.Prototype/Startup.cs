@@ -52,11 +52,9 @@ namespace Dfe.Wizard.Prototype
             services.Configure<BasicAuthOptions>(Configuration.GetSection("BasicAuth"));
 
             services.AddScoped<Questionnaire, HomeQuestionnaire>();
-            services.AddScoped<Questionnaire, CommuteQuestionnaire>();
             services.AddScoped<Questionnaire, HealthQuestionnaire>();
 
             services.AddScoped<IExaminer, HomeExaminer>();
-            services.AddScoped<IExaminer, CommuteExaminer>();
             services.AddScoped<IExaminer, HealthExaminer>();
 
             services.AddSingleton<IFileUploadService, FakeUploadService>();

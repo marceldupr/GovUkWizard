@@ -10,6 +10,13 @@
 </div>
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+        <h2 class="govuk-heading-m govuk-!-margin-bottom-3">@Model.Status.ToString()</h2>
+        <p>@Model.OutcomeMessage</p>
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
         @foreach (var question in Model.Questions)
         {
             <dl class="govuk-summary-list app-summary-list app-summary-list--mobile-inline app-summary-list--pupil-details">

@@ -36,7 +36,9 @@ namespace Dfe.Wizard.Prototype.Controllers
             var resultViewModel = new ResultViewModel
             {
                 Answers = questionnaire.Answers,
-                Questions = GetQuestions()
+                Questions = GetQuestions(),
+                Status = questionnaire.OutcomeStatus,
+                OutcomeMessage = questionnaire.OutcomeMessage
             };
             return View("Result", resultViewModel);
         }
@@ -162,6 +164,8 @@ namespace Dfe.Wizard.Prototype.Controllers
             {
                 return View("Prompt", nextQuestionViewModel);
             }
+
+            SaveQuestionnaire(questionnaire);
 
             return RedirectToAction("Result");
         }
