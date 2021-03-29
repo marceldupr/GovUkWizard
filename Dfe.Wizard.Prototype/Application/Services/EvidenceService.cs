@@ -6,7 +6,7 @@ namespace Dfe.Wizard.Prototype.Application.Services
 {
     public class EvidenceService : IEvidenceService
     {
-        private IFileUploadService _fileUploadService;
+        private readonly IFileUploadService _fileUploadService;
 
         public EvidenceService(IFileUploadService fileUploadService)
         {

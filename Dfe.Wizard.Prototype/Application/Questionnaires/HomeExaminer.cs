@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Dfe.Wizard.Prototype.Application.Questionnaires.Questions;
-using Dfe.Wizard.Prototype.Models.Common;
 using Dfe.Wizard.Prototype.Models.Questions;
 using Dfe.Wizard.Prototype.Models.Rules;
 
@@ -22,12 +21,21 @@ namespace Dfe.Wizard.Prototype.Application.Questionnaires
             var ownerOfHomeQuestion = new OwnerOfHomeQuestion();
             questions.Add(ownerOfHomeQuestion);
 
-            // If the user has answered yes to owning a home, then ask these additional questions
+            // If the user has answered yes to owning a home, then ask these additional home owner questions
             if (GetAnswer(questionnaire, nameof(OwnerOfHomeQuestion))?.Value == "1")
             {
                 questions.Add(new PriceOfPurchaseQuestion());
                 questions.Add(new DateOfPurchaseQuestion());
                 questions.Add(new EvidenceUploadQuestion("Upload Evidence", "<p>Proof of Address</p>"));
+            }
+            else // If the user says no, then ask rental questions
+            {
+                if (GetAnswer(questionnaire, nameof(OwnerOfHomeQuestion))?.Value == "0")
+                {
+                    questions.Add(new PriceOfRentQuestion());
+                    questions.Add(new DateMovedInQuestion());
+                    questions.Add(new EvidenceUploadQuestion("Upload Evidence", "<p>Proof of Address</p>"));
+                }
             }
 
             return questions;
@@ -50,20 +58,10 @@ namespace Dfe.Wizard.Prototype.Application.Questionnaires
         /// <returns>QuestionnaireOutcome</returns>
         protected override QuestionnaireOutcome ApplyRule(Questionnaire questionnaire)
         {
-            // If they aren't a home owner then reject the survey
-            if (GetAnswer(questionnaire, nameof(OwnerOfHomeQuestion))?.Value == "0")
-            {
-                return new QuestionnaireOutcome(OutcomeStatus.AutoReject, "This survey is only for home owners");
-            }
-
-            // If their purchase price is less than 100K then they are not the target of the survey
-            if (GetAnswer(questionnaire, nameof(PriceOfPurchaseQuestion))?.Value.ToIntOrZero() < 100000)
-            {
-                return new QuestionnaireOutcome(OutcomeStatus.AutoReject, "This survey is only for home owners who purchased homes over 100000");
-            }
-
             // If they answered all the questions then survey is accepted
-            return new QuestionnaireOutcome(OutcomeStatus.AutoAccept, "Thanks for your answers. We appreciate your time to take this survey");
+            // This questionnaire is an example of no business rules
+            return new QuestionnaireOutcome(OutcomeStatus.AutoAccept,
+                "Thanks for your answers. We appreciate your time to take this survey");
         }
 
         /// <summary>

@@ -1,6 +1,27 @@
+@using Dfe.Wizard.Prototype.Models.Questions
+@model Dfe.Wizard.Prototype.Models.ViewModels.Questions.ResultViewModel
+<div class="govuk-grid-row govuk-!-padding-top-2">
+    <div class="app-grid-column-two-thirds--always">
+        <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Questionnaire Answers</h2>
+    </div>
+    <div class="app-grid-column-one-third--always app-align-right">
+        <a class="print-link" href="javascript:window.print()">Print</a>
+    </div>
+</div>
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-        <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">Dfe Wizard Prototype</h1>
-        <p class="govuk-body">Lorem ipsum...</p>
+    <div class="govuk-grid-column-two-thirds">
+        @foreach (var question in Model.Questions)
+        {
+            <dl class="govuk-summary-list app-summary-list app-summary-list--mobile-inline app-summary-list--pupil-details">
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        @question.Title
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        @Model.Answers.Single(x=>x.QuestionId == question.Id).Value
+                    </dd>
+                </div>
+            </dl>
+        }
     </div>
 </div>

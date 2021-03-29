@@ -7,6 +7,6 @@ namespace Dfe.Wizard.Prototype.Application.Questionnaires
     public class HealthQuestionnaire : Questionnaire
     {
         public override string Id => nameof(HealthQuestionnaire);
-        public override string Name => "Questions about your health";
+        public override string Name => "Are you healthy enough to join our marathon?";
     }
 }

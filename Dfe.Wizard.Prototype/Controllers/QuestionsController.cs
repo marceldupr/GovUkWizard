@@ -32,7 +32,13 @@ namespace Dfe.Wizard.Prototype.Controllers
 
         public IActionResult Result()
         {
-            return View("Result");
+            var questionnaire = GetQuestionnaire();
+            var resultViewModel = new ResultViewModel
+            {
+                Answers = questionnaire.Answers,
+                Questions = GetQuestions()
+            };
+            return View("Result", resultViewModel);
         }
 
         public IActionResult Prompt(int currentIndex=0)
@@ -163,10 +169,7 @@ namespace Dfe.Wizard.Prototype.Controllers
         private QuestionViewModel CreateUploadMoreViewModel(PromptAnswerViewModel promptAnswerViewModel, List<Question> questions,
             Questionnaire questionnaire)
         {
-            var uploadEvidenceViewModel = new QuestionViewModel(questions, promptAnswerViewModel.CurrentIndex)
-            {
-                ShowConditional = true
-            };
+            var uploadEvidenceViewModel = new QuestionViewModel(questions, promptAnswerViewModel.CurrentIndex);
 
             ViewBag.Upload = GetFiles();
             ViewBag.HasAdded = !Request.Form.ContainsKey("skipValidation");
@@ -179,10 +182,7 @@ namespace Dfe.Wizard.Prototype.Controllers
             ViewData.ModelState.AddModelError(promptAnswerViewModel.QuestionId, thisQuestion.Validator.NullErrorMessage);
             ViewData["errorMessage"] = thisQuestion.Validator.NullErrorMessage;
 
-            var errorUploadViewModel = new QuestionViewModel(questions, promptAnswerViewModel.CurrentIndex)
-            {
-                ShowConditional = true
-            };
+            var errorUploadViewModel = new QuestionViewModel(questions, promptAnswerViewModel.CurrentIndex);
 
             ViewBag.Upload = GetFiles();
             return errorUploadViewModel;
@@ -193,10 +193,7 @@ namespace Dfe.Wizard.Prototype.Controllers
             ViewData.ModelState.AddModelError(promptAnswerViewModel.QuestionId, error.Title);
             ViewData["errorMessage"] = error.Detail;
 
-            var errorUploadViewModel = new QuestionViewModel(questions, promptAnswerViewModel.CurrentIndex)
-            {
-                ShowConditional = true
-            };
+            var errorUploadViewModel = new QuestionViewModel(questions, promptAnswerViewModel.CurrentIndex);
 
             ViewBag.Upload = GetFiles();
             return errorUploadViewModel;
