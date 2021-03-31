@@ -11,6 +11,25 @@ This includes executing validation and even business rules with outcomes after t
 - Python 2.7
 - Ruby
 
+## Add AppSecrets to your project
+
+```
+{
+  "BasicAuth": {
+    "UserName": "internal",
+    "Password": "test"
+  }
+}
+```
+
+add your own password and store as secret.json. Then run the following command in the project folder
+
+```
+secret.json cat | dotnet user-secrets set
+```
+
+or on windows simply use Visual Studio and right click on the project and choose 'manage secrets'
+
 ## Set up
 Install the frontend dependencies by running the following from the project folder:
 ```
