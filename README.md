@@ -41,7 +41,7 @@ dotnet build
 ```
 Build the frontend assets (compiled JS and CSS) by running the following from the project folder:
 ```
-npm buildDev
+npm run buildDev
 ```
 Run the web application through Visual Studio, or running the following .NET Core CLI command from the solution directory:
 ```
